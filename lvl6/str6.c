@@ -26,10 +26,10 @@ int count(char find,char str[])
     int count=0;
     int i=0;
     while(str[i]!='\0'){
-        i++;
         if(str[i]==find){
             count++;
         }
+        i++;
 }
 return count;
 }
