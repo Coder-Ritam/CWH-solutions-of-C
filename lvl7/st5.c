@@ -8,8 +8,13 @@ typedef struct complex_number{
 }num;
 
 int main(){
-    num n1={1,2};
-    struct complex_number *ptr=&n1;
+    num n1={1,-2};
+    num *ptr=&n1;
+    if(n1.Im>=0){
     printf("the complex number is z=%d+%di\n",ptr->Re,ptr->Im);
+    }
+    else{
+        printf("the complex number is z=%d%di\n",ptr->Re,ptr->Im);
+    }
     return 0;
 }
