@@ -30,7 +30,8 @@ void enqueue(Queue *queue,int value){
         queue->capacity*=2;
         queue->arr=(int*)realloc(queue->arr,queue->capacity*sizeof(int));
     }
-    queue->arr[++queue->size]=value;
+    queue->arr[queue->size]=value;
+    queue->size++;
 }
 
 void  dequeue(Queue *queue){
@@ -77,16 +78,19 @@ int main(){
     printf("The Memory Status is : %s\n",isFull(q) ? "Full" : "Not Full");
 
     //As we know we can expand it so lets try it
-    enqueue(q,23); //here we reallocated the size using realloc()
+    enqueue(q,23);
+    enqueue(q,26);
+    enqueue(q,28);
+     //here we reallocated the size using realloc()
     //lets verify if now the queue is full or not
     printf("The Memory Status is : %s\n",isFull(q) ? "Full" : "Not Full");
 
-    printf("Rear element of queue before dequeue: %d\n", getRear(q));
+    printf("Front element of queue before dequeue: %d\n", getFront(q));
     dequeue(q);
-    printf("Rear element of queue after dequeue: %d\n", getRear(q));
+    printf("Front element of queue after dequeue: %d\n", getFront(q));
 
     printf("The Memory Status is : %s\n",isEmpty(q) ? "Empty" : "Not Empty");
 
-    printf("The front element is:%d\n",getFront(q));
+    printf("The front element is:%d\n",getRear(q));
     return 0;
 }
