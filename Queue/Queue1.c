@@ -33,7 +33,8 @@ void enqueue(Queue *queue, int value)
         printf("queue overflow\n");
         return;
     }
-    queue->arr[++queue->size] = value;
+    queue->arr[queue->size] = value;
+    queue->size++;
 }
 
 void dequeue(Queue *queue)
@@ -43,9 +44,8 @@ void dequeue(Queue *queue)
         printf("queue underflow\n");
         return;
     }
-    for (int i = 1; i < queue->size; i++)
-    {
-        queue->arr[i - 1] = queue->arr[i];
+    for(int i=0;i<queue->size;i++){
+        queue->arr[i-1]=queue->arr[i];
     }
     queue->size--;
 }
@@ -101,11 +101,11 @@ int main()
     enqueue(queue, 400);
 
     isFull(queue);
-    printf("Rear element of queue before dequeue: %d\n", getRear(queue));
+    printf("Front element of queue before dequeue: %d\n", getFront(queue));
     dequeue(queue);
-    printf("Rear element of queue after dequeue: %d\n", getRear(queue));
+    printf("Front element of queue after dequeue: %d\n", getFront(queue));
 
-    printf("Front:%d\n", getFront(queue));
+    printf("Rear:%d\n", getRear(queue));
 
     isEmpty(queue);
     isFull(queue);
